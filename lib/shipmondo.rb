@@ -1,0 +1,1 @@
+require 'shipmondo/client'
