@@ -1,4 +1,5 @@
 require 'faraday'
+require 'shipmondo/sales_orders/client'
 require 'shipmondo/service_points/client'
 
 module Shipmondo
@@ -11,6 +12,10 @@ module Shipmondo
         f.request :json
         f.response :json
       end
+    end
+
+    def sales_orders
+      SalesOrders::Client.new(http)
     end
 
     def service_points
