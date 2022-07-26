@@ -9,8 +9,8 @@ describe Shipmondo::SalesOrders::Client do
 
     before do
       stub_request(:get, "https://app.shipmondo.com/api/public/v3/sales_orders/#{id}")
-        .to_return(headers: { 'Content-Type' => 'application/json' },
-                  body: JSON.generate({ id:, order_id: }))
+        .to_return(headers: { content_type: 'application/json' },
+                   body: JSON.generate({ id:, order_id: }))
     end
 
     it 'can find by id' do
