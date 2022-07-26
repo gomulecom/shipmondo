@@ -1,6 +1,7 @@
 require 'faraday'
 require 'shipmondo/sales_orders/client'
 require 'shipmondo/service_points/client'
+require 'shipmondo/shipments/client'
 
 module Shipmondo
   class Client
@@ -20,6 +21,10 @@ module Shipmondo
 
     def service_points
       ServicePoints::Client.new(http)
+    end
+
+    def shipments
+      Shipments::Client.new(http)
     end
   end
 end

@@ -15,15 +15,21 @@ describe Shipmondo::Client do
     assert_requested(request)
   end
 
+  it 'returns sales orders client' do
+    client = Shipmondo::Client.new(api_user:, api_key:)
+
+    expect(client.sales_orders).to be_instance_of Shipmondo::SalesOrders::Client
+  end
+
   it 'returns service point client' do
     client = Shipmondo::Client.new(api_user:, api_key:)
 
     expect(client.service_points).to be_instance_of Shipmondo::ServicePoints::Client
   end
 
-  it 'returns sales orders client' do
+  it 'returns shipments client' do
     client = Shipmondo::Client.new(api_user:, api_key:)
 
-    expect(client.sales_orders).to be_instance_of Shipmondo::SalesOrders::Client
+    expect(client.shipments).to be_instance_of Shipmondo::Shipments::Client
   end
 end

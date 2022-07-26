@@ -1,7 +1,7 @@
-require 'shipmondo/sales_orders/sales_order'
+require 'shipmondo/shipments/shipment'
 
 module Shipmondo
-  module SalesOrders
+  module Shipments
     class Client
       attr_reader :http
 
@@ -10,7 +10,7 @@ module Shipmondo
       end
 
       def find(id)
-        SalesOrder.new(http.get("sales_orders/#{id}"))
+        Shipment.new(http.get("shipments/#{id}"))
       end
     end
   end
