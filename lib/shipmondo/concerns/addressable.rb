@@ -1,24 +1,14 @@
+require 'shipmondo/types'
+
 module Shipmondo
   module Concerns
     module Addressable
-      def address_1
-        json.fetch('address1')
-      end
-
-      def address_2
-        json.fetch('address2')
-      end
-
-      def zip_code
-        json.fetch('zipcode')
-      end
-
-      def city
-        json.fetch('city')
-      end
-
-      def country_code
-        json.fetch('country_code')
+      def self.included(base)
+        base.attribute :address1, Types::String
+        base.attribute :address2, Types::String.optional
+        base.attribute :zipcode, Types::String
+        base.attribute :city, Types::String
+        base.attribute :country_code, Types::String
       end
     end
   end

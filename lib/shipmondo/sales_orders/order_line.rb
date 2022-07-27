@@ -1,99 +1,31 @@
+require 'shipmondo/struct'
+require 'shipmondo/types'
+
 module Shipmondo
   module SalesOrders
-    class OrderLine
-      attr_reader :json
-
-      def initialize(json)
-        @json = json
-      end
-
-      def id
-        json.fetch('id')
-      end
-
-      def line_type
-        json.fetch('line_type')
-      end
-
-      def item_sku
-        json.fetch('item_sku')
-      end
-
-      def item_variant_code
-        json.fetch('item_variant_code')
-      end
-
-      def item_name
-        json.fetch('item_name')
-      end
-
-      def quantity
-        json.fetch('quantity').to_f
-      end
-
-      def unit_price_excluding_vat
-        BigDecimal(json.fetch('unit_price_excluding_vat'))
-      end
-
-      def discount_amount_excluding_vat
-        BigDecimal(json.fetch('discount_amount_excluding_vat'))
-      end
-
-      def amount_excluding_vat
-        BigDecimal(json.fetch('amount_excluding_vat'))
-      end
-
-      def amount_including_vat
-        BigDecimal(json.fetch('amount_including_vat'))
-      end
-
-      def vat_amount
-        BigDecimal(json.fetch('vat_amount'))
-      end
-
-      def vat_percent
-        json.fetch('vat_percent').to_f
-      end
-
-      def currency_code
-        json.fetch('currency_code')
-      end
-
-      def item_barcode
-        json.fetch('item_barcode')
-      end
-
-      def item_bin
-        json.fetch('item_bin')
-      end
-
-      def shipped_quantity
-        json.fetch('shipped_quantity').to_f
-      end
-
-      def unit_weight
-        json.fetch('unit_weight')
-      end
-
-      def image_url
-        json.fetch('image_url')
-      end
-
-      def cost_price
-        BigDecimal(json.fetch('cost_price'))
-      end
-
-      def country_code_of_origin
-        json.fetch('country_code_of_origin')
-      end
-
-      def customs_commodity_code
-        json.fetch('customs_commodity_code')
-      end
-
-      def customs_description
-        json.fetch('customs_description')
-      end
+    class OrderLine < Struct
+      attribute :id, Types::Integer
+      attribute :line_type, Types::String.enum('item', 'shipping', 'discount', 'gift_card', 'payment_fee')
+      attribute :item_sku, Types::String
+      attribute :item_variant_code, Types::String
+      attribute :item_name, Types::String
+      attribute :quantity, Types::Coercible::Float
+      attribute :unit_price_excluding_vat, Types::Coercible::Decimal
+      attribute :discount_amount_excluding_vat, Types::Coercible::Decimal
+      attribute :amount_excluding_vat, Types::Coercible::Decimal
+      attribute :amount_including_vat, Types::Coercible::Decimal
+      attribute :vat_amount, Types::Coercible::Decimal
+      attribute :vat_percent, Types::Coercible::Float
+      attribute :currency_code, Types::String
+      attribute :item_barcode, Types::String
+      attribute :item_bin, Types::String
+      attribute :shipped_quantity, Types::Coercible::Decimal
+      attribute :unit_weight, Types::Integer
+      attribute :image_url, Types::String
+      attribute :cost_price, Types::Coercible::Decimal
+      attribute :country_code_of_origin, Types::String
+      attribute :customs_commodity_code, Types::String
+      attribute :customs_description, Types::String
     end
   end
 end

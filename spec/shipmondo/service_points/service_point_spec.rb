@@ -10,7 +10,7 @@ describe Shipmondo::ServicePoints::ServicePoint do
   subject { Shipmondo::ServicePoints::ServicePoint.new(JSON.parse(JSON.generate(json))) }
 
   it 'fetches the id' do
-    expect(subject.id).to eq '95558'
+    expect(subject.id).to eq 95558
   end
 
   it 'fetches the name' do
@@ -18,15 +18,15 @@ describe Shipmondo::ServicePoints::ServicePoint do
   end
 
   it 'fetches the first address line' do
-    expect(subject.address_1).to eq 'Paaskeløkkevej 11'
+    expect(subject.address1).to eq 'Paaskeløkkevej 11'
   end
 
   it 'fetches the second address line' do
-    expect(subject.address_2).to be_nil
+    expect(subject.address2).to be_nil
   end
 
-  it 'fetches the zip_code' do
-    expect(subject.zip_code).to eq '5000'
+  it 'fetches the zip code' do
+    expect(subject.zipcode).to eq '5000'
   end
 
   it 'fetches the city' do

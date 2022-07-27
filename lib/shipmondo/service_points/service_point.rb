@@ -1,22 +1,14 @@
 require 'shipmondo/concerns/addressable'
+require 'shipmondo/struct'
+require 'shipmondo/types'
 
 module Shipmondo
   module ServicePoints
-    class ServicePoint
+    class ServicePoint < Struct
       include Shipmondo::Concerns::Addressable
-      attr_reader :json
 
-      def initialize(json)
-        @json = json
-      end
-
-      def id
-        json.fetch('id')
-      end
-
-      def name
-        json.fetch('name')
-      end
+      attribute :id, Types::Coercible::Integer
+      attribute :name, Types::String
     end
   end
 end

@@ -1,34 +1,17 @@
 require 'shipmondo/concerns/addressable'
+require 'shipmondo/struct'
+require 'shipmondo/types'
 
 module Shipmondo
   module SalesOrders
-    class BillTo
+    class BillTo < Struct
       include Shipmondo::Concerns::Addressable
-      attr_reader :json
 
-      def initialize(json)
-        @json = json
-      end
-
-      def name
-        json.fetch('name')
-      end
-
-      def attention
-        json.fetch('attention')
-      end
-
-      def email
-        json.fetch('email')
-      end
-
-      def mobile
-        json.fetch('mobile')
-      end
-
-      def telephone
-        json.fetch('telephone')
-      end
+      attribute :name, Types::String
+      attribute :attention, Types::String.optional
+      attribute :email, Types::String.optional
+      attribute :mobile, Types::String.optional
+      attribute :telephone, Types::String.optional
     end
   end
 end

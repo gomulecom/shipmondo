@@ -6,7 +6,7 @@ describe Shipmondo::SalesOrders::SalesOrder do
                  service_point: { id: '95558', name: 'Påskeløkkens Købmand', address1: 'Paaskeløkkevej 11', zipcode: '5000', city: 'Odense C', country_code: 'DK' },
                  payment_details: { amount_excluding_vat: '1600.0', amount_including_vat: '2000.0', authorized_amount: '2000.0', currency_code: 'DKK', vat_amount: '400.0', vat_percent: '0.25', payment_method: 'quickpay', transaction_id: '123456789', payment_gateway_id: 4012 },
                  order_lines: [
-                  { line_type: 'item', item_name: 'T-Shirt', item_sku: 'TS001-WH', item_variant_code: 'White', quantity: 2, unit_price_excluding_vat: '800.0', discount_amount_excluding_vat: '0.0', vat_percent: '0.25', currency_code: 'DKK', unit_weight: 2000, item_barcode: '12345678', item_bin: 'AB-001', image_url: 'http://example.com/image', cost_price: '50.0', country_code_of_origin: 'DK', customs_commodity_code: '123456', customs_description: 'Example contents' }
+                   { line_type: 'item', item_name: 'T-Shirt', item_sku: 'TS001-WH', item_variant_code: 'White', quantity: 2, unit_price_excluding_vat: '800.0', discount_amount_excluding_vat: '0.0', vat_percent: '0.25', currency_code: 'DKK', unit_weight: 2000, item_barcode: '12345678', item_bin: 'AB-001', image_url: 'http://example.com/image', cost_price: '50.0', country_code_of_origin: 'DK', customs_commodity_code: '123456', customs_description: 'Example contents' }
                  ] } }
 
   subject { Shipmondo::SalesOrders::SalesOrder.new(JSON.parse(JSON.generate(json))) }

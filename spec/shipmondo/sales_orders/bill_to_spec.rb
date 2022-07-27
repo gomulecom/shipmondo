@@ -21,15 +21,15 @@ describe Shipmondo::SalesOrders::BillTo do
   end
 
   it 'fetches the first address line' do
-    expect(subject.address_1).to eq 'Skibhusvej 52'
+    expect(subject.address1).to eq 'Skibhusvej 52'
   end
 
   it 'fetches the second address line' do
-    expect(subject.address_2).to be_nil
+    expect(subject.address2).to be_nil
   end
 
   it 'fetches the zip code' do
-    expect(subject.zip_code).to eq '5000'
+    expect(subject.zipcode).to eq '5000'
   end
 
   it 'fetches the city' do
