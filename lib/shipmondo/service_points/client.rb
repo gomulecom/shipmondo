@@ -1,4 +1,4 @@
-require 'shipmondo/service_points/pickup_point'
+require 'shipmondo/service_points/service_point'
 
 module Shipmondo
   module ServicePoints
@@ -11,7 +11,7 @@ module Shipmondo
 
       def pickup_points(carrier_code:, address: nil, city: nil, zip_code:, country_code:)
         http.get('pickup_points', carrier_code:, address:, city:, zip_code:, country_code:).body.map do |json|
-          PickupPoint.new(json)
+          ServicePoint.new(json)
         end
       end
     end

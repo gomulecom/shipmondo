@@ -22,7 +22,7 @@ describe Shipmondo::ServicePoints::Client do
     it 'can list pickup points neares the given address' do
       pickup_points = subject.pickup_points(carrier_code:, address:, city:, zip_code:, country_code:)
 
-      expect(pickup_points).to all(be_instance_of(Shipmondo::ServicePoints::PickupPoint))
+      expect(pickup_points).to all(be_instance_of(Shipmondo::ServicePoints::ServicePoint))
     end
   end
 end
