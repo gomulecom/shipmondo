@@ -12,6 +12,21 @@ module Shipmondo
       attribute :email, Types::String.optional
       attribute :mobile, Types::String.optional
       attribute :telephone, Types::String.optional
+
+      def as_json
+        {
+          name: name,
+          attention: attention,
+          address1: address1,
+          address2: address2,
+          zipcode: zipcode,
+          city: city,
+          country_code: country_code,
+          email: email,
+          mobile: mobile,
+          telephone: telephone,
+        }.compact
+      end
     end
   end
 end

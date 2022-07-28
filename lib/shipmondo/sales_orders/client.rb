@@ -12,6 +12,10 @@ module Shipmondo
       def find(id)
         SalesOrder.new(http.get("sales_orders/#{id}"))
       end
+
+      def create(sales_order)
+        http.post('sales_orders', sales_order.as_json)
+      end
     end
   end
 end

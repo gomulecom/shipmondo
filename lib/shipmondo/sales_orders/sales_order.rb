@@ -14,8 +14,19 @@ module Shipmondo
       attribute :ship_to, ShipTo
       attribute :bill_to, BillTo
       attribute :payment_details, PaymentDetails
-      attribute :service_point, Shipmondo::ServicePoints::ServicePoint
+      attribute :service_point, Shipmondo::ServicePoints::ServicePoint.optional
       attribute :order_lines, Types::Array.of(OrderLine)
+
+      def as_json
+        {
+          order_id: order_id,
+          ship_to: ship_to&.as_json,
+          bill_to: bill_to&.as_json,
+          payment_details: payment_details&.as_json,
+          service_point: service_point&.as_json,
+          order_lines: order_lines&.map(&:as_json)
+        }.compact
+      end
     end
   end
 end
