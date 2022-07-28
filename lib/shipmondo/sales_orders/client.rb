@@ -10,11 +10,13 @@ module Shipmondo
       end
 
       def find(id)
-        SalesOrder.new(http.get("sales_orders/#{id}"))
+        SalesOrder.new(http.get("sales_orders/#{id}").body)
       end
 
       def create(sales_order)
-        http.post('sales_orders', sales_order.as_json)
+        sales_order.new(
+          http.post('sales_orders', sales_order.as_json).body
+        )
       end
     end
   end

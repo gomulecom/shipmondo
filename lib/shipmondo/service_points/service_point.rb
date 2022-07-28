@@ -10,6 +10,18 @@ module Shipmondo
       attribute :id, Types::Coercible::Integer
       attribute :name, Types::String
 
+      def self.new(data)
+        if data.key?('country') && !data.key?('country_code')
+          data['country_code'] = data['country']
+        end
+
+        if data.key?('address') && !data.key?('address1')
+          data['address1'] = data['address']
+        end
+
+        super
+      end
+
       def as_json
         {
           id: id.to_s,

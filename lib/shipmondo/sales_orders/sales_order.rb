@@ -11,6 +11,7 @@ module Shipmondo
     class SalesOrder < Struct
       attribute :id, Types::Integer
       attribute :order_id, Types::String
+      attribute :ordered_at, Types::DateTime
       attribute :ship_to, ShipTo
       attribute :bill_to, BillTo
       attribute :payment_details, PaymentDetails
@@ -20,6 +21,7 @@ module Shipmondo
       def as_json
         {
           order_id: order_id,
+          ordered_at: ordered_at&.iso8601,
           ship_to: ship_to&.as_json,
           bill_to: bill_to&.as_json,
           payment_details: payment_details&.as_json,
