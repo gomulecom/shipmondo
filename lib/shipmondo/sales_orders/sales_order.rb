@@ -11,7 +11,7 @@ module Shipmondo
     class SalesOrder < Struct
       attribute :id, Types::Integer
       attribute :order_id, Types::String
-      attribute :ordered_at, Types::DateTime
+      attribute :ordered_at, Types::DateTime.optional
       attribute :ship_to, ShipTo
       attribute :bill_to, BillTo
       attribute :payment_details, PaymentDetails
