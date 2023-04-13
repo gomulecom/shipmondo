@@ -61,5 +61,20 @@ describe Shipmondo::SalesOrders::Client do
     it 'keeps the given data' do
       expect(subject.create(sales_order).order_id).to eq '27000'
     end
+
+    describe :update_note do
+      let(:id) { 11227 }
+      let(:note) { 'Updated Note' }
+
+      before do
+        stub_request(:put, "https://app.shipmondo.com/api/public/v3/sales_orders/#{id}/order_note")
+          .with(body: { order_note: note })
+          .to_return(headers: { content_type: 'application/json' }, body: JSON.generate({ order_note: note }))
+      end
+
+      it 'updates sales order note' do
+        expect(subject.update_note(id, note).order_note).to eq 'Updated Note'
+      end
+    end
   end
 end
