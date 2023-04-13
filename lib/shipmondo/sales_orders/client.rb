@@ -21,9 +21,9 @@ module Shipmondo
 
       def update_note(id, note)
         SalesOrder.new(
-          http.put("sales_orders/#{id}/order_note", { order_note: note }).body
+          http.put("sales_orders/#{id}/order_note", { order_note: note }.to_json).body
         )
-        # http.put("sales_orders/#{id}/order_note", { order_note: note }).body
+        # http.put("sales_orders/#{id}/order_note", { order_note: note }.to_json).body
       end
     end
   end
