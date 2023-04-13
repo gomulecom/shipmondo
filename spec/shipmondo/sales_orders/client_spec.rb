@@ -73,7 +73,7 @@ describe Shipmondo::SalesOrders::Client do
       end
 
       it 'updates sales order note' do
-        expect(subject.update_note(id, note).order_note).to eq 'Updated Note'
+        expect(subject.update_note(id, note)['order_note']).to eq 'Updated Note'
       end
     end
   end
