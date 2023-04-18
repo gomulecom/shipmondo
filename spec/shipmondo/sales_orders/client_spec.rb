@@ -76,5 +76,20 @@ describe Shipmondo::SalesOrders::Client do
         expect(subject.update_note(id, note)['order_note']).to eq 'Updated Note'
       end
     end
+
+    describe :search do
+      let(:order_id) { '27000' }
+
+      before do
+        stub_request(:get, "https://app.shipmondo.com/api/public/v3/sales_orders?order_id=#{order_id}")
+          .with(body: {})
+          .to_return(headers: { content_type: 'application/json' },
+                     body: File.read('spec/fixtures/search_sales_order.json').strip)
+      end
+
+      it 'searches for sales orders' do
+        expect(subject.search(order_id).first).to be_instance_of Shipmondo::SalesOrders::SalesOrder
+      end
+    end
   end
 end
