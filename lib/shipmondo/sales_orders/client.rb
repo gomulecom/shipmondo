@@ -13,6 +13,13 @@ module Shipmondo
         SalesOrder.new(http.get("sales_orders/#{id}").body)
       end
 
+      def search(order_id)
+        # More than 1 sales order with same order_id ?
+        http.get("sales_orders?order_id=#{order_id}").body.map do |data|
+          SalesOrder.new(data)
+        end
+      end
+
       def create(sales_order)
         sales_order.new(
           http.post('sales_orders', sales_order.as_json).body
