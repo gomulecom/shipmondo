@@ -67,13 +67,15 @@ describe Shipmondo::SalesOrders::Client do
       let(:note) { 'Updated Note' }
 
       before do
-        stub_request(:put, "https://app.shipmondo.com/api/public/v3/sales_orders/#{id}/order_note")
-          .with(body: { order_note: note })
-          .to_return(headers: { content_type: 'application/json' }, body: JSON.generate({ order_note: note }))
+        @update_note_request = stub_request(:put, "https://app.shipmondo.com/api/public/v3/sales_orders/#{id}/order_note")
+                               .with(body: { order_note: note })
+                               .to_return(headers: { content_type: 'application/json' },
+                                          body: JSON.generate({ order_note: note }))
       end
 
       it 'updates sales order note' do
-        expect(subject.update_note(id, note)['order_note']).to eq 'Updated Note'
+        subject.update_note(id, note)
+        expect(@update_note_request).to have_been_made
       end
     end
 
