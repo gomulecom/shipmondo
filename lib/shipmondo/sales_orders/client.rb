@@ -14,8 +14,8 @@ module Shipmondo
       end
 
       def search(order_id)
-        # More than 1 sales order with same order_id ?
         http.get("sales_orders?order_id=#{order_id}").body.map do |data|
+          data['ordered_at'] = DateTime.parse(data['ordered_at'])
           SalesOrder.new(data)
         end
       end
