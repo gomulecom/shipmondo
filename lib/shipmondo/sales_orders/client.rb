@@ -15,8 +15,9 @@ module Shipmondo
 
       def search(order_id)
         http.get("sales_orders?order_id=#{order_id}").body.map do |data|
+          data['service_point'].compact!
           data['ordered_at'] = DateTime.parse(data['ordered_at'])
-          data.delete('service_point') if data.dig('service_point', 'id').nil?
+          data.compact!
           SalesOrder.new(data)
         end
       end
