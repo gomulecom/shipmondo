@@ -1,6 +1,7 @@
 describe Shipmondo::SalesOrders::SalesOrder do
   let(:json) { { id: 11227,
                  order_id: "27000",
+                 order_note: 'example ordernote',
                  ship_to: { name: 'Lene Hansen', attention: nil, address1: 'Skibhusvej 52', address2: nil, zipcode: '5000', city: 'Odense C', country_code: 'DK', email: 'lene@email.dk', mobile: '12345678', telephone: '12345678', instruction: 'Place on the front porch.' },
                  bill_to: { name: 'Lene Hansen', attention: nil, address1: 'Skibhusvej 52', address2: nil, zipcode: '5000', city: 'Odense C', country_code: 'DK', email: 'lene@email.dk', mobile: '12345678', telephone: '12345678' },
                  service_point: { id: '95558', name: 'Påskeløkkens Købmand', address1: 'Paaskeløkkevej 11', zipcode: '5000', city: 'Odense C', country_code: 'DK' },
@@ -17,6 +18,10 @@ describe Shipmondo::SalesOrders::SalesOrder do
 
   it 'fetches the order id' do
     expect(subject.order_id).to eq "27000"
+  end
+
+  it 'fetches the order note' do
+    expect(subject.order_note).to eq 'example ordernote'
   end
 
   it 'returns the ship to' do
